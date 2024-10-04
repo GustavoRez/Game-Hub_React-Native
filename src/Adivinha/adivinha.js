@@ -2,21 +2,28 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './css';
 
-function Adivinha({ navigateTo }){
+function Adivinha({ navigateTo }) {
   const [chute, setChute] = useState('');
-  const [numeroAleatorio, setNumeroAleatorio] = useState(Math.floor(Math.random() * 101));
+  const [numeroAleatorio, setNumeroAleatorio] = useState(Math.floor(Math.random() * 101)
+  );
   const [tentativas, setTentativas] = useState(0);
 
   const chutes = () => {
     const chuteTentativa = parseInt(chute);
     setTentativas(tentativas + 1);
-
     if (chuteTentativa === numeroAleatorio) {
-      window.alert(`Parabéns! Você adivinhou o número ${numeroAleatorio} em ${tentativas + 1} tentativas!`);
+      window.alert(
+        `Parabéns! Você adivinhou o número ${numeroAleatorio} em ${
+          tentativas + 1
+        } tentativas!`
+      );
       resetJogo();
-    } else if (chuteTentativa < numeroAleatorio) {      
+    } else if (chances == 1) {
+      window.alert(`Que pena! Você perdeu! o número era ${numeroAleatorio}`);
+      resetJogo();
+    } else if (chuteTentativa < numeroAleatorio) {
       window.alert('Tente um número maior!');
-    } else {      
+    } else {
       window.alert('Tente um número menor!');
     }
 
@@ -28,14 +35,17 @@ function Adivinha({ navigateTo }){
     setTentativas(0);
   };
 
-  function sair(){
-    navigateTo('SelecaoJogos')
+  function sair() {
+    navigateTo('SelecaoJogos');
   }
+
+  var chances = 7 - tentativas;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Adivinhe o Número!</Text>
       <Text style={styles.instruction}>Digite um número entre 1 e 100:</Text>
+      <Text style={styles.chancesText}>Chances restantes: {chances}</Text>
       <TextInput
         style={styles.input}
         value={chute}
