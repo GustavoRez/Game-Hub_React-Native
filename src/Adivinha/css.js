@@ -34,6 +34,13 @@ export const styles = StyleSheet.create({
     backgroundColor: '#1E1E1E',
     fontFamily: 'Comic Sans MS',
   },
+  chancesText: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  color: '#FF6347', /* Tomate */
+  marginVertical: 10,
+  textAlign: 'center',
+},
   adivinharButton: {
     backgroundColor: '#1a6bba',
     borderRadius: 180,
